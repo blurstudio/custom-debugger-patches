@@ -59,10 +59,16 @@ class Variable:
 
 	@property
 	def value(self) -> str:
-		v = self.reference.value
-		if len(v) > 50:
-			v = v[:50] + "..."
-		return v
+		max_length = 70
+		value = self.reference.value
+		name = self.reference.name
+		if len(value+name) > max_length:
+			end = max_length - len(name)
+			if 0 < end < len(value):
+				value = value[:end] + "..."
+			else:
+				value = ""
+		return value
 
 	@core.coroutine
 	def fetch(self):
