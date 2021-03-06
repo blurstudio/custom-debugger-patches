@@ -5,6 +5,7 @@ Credit for nearly all content in the patches/ directory goes to the developers o
 
 ### Install
 
-- Clone this repository
-- Open cmd/terminal in the cloned location
-- Run `python install.py`
+- Open Sublime
+- In the menu, select Preferences -> Browse Packages
+- Clone this repository to the root of the opened folder, then close the folder
+- Follow the message instructions

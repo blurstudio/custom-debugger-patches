@@ -1,24 +1,36 @@
 
-print("Copying files...", end=" ")
-
-import platform
-from os.path import dirname, join
+from os.path import dirname, join, exists
 from shutil import copyfile
-import os
+import sublime
 
-patches = join(dirname(__file__), "patches")
+version = "0.1"
 
-plat = platform.system()
+def plugin_loaded():
+    lock = join(dirname(__file__), 'lock.txt')
+    if exists(lock):
+        with open(lock, 'r') as f:
+            v = f.readline()
+        if v == version:
+            return
+        
+    with open(lock, 'w') as f:
+        f.write(version)
 
-if plat == 'Windows':
-    debugger = join(os.getenv('APPDATA'), "Roaming", "Sublime Text 3", "Packages", "Debugger")
+    patch_dir = join(dirname(__file__), "patches")
 
-# The list of patches as filename: path from Debugger root
-patches = {
-    "variables.py": join("modules", "debugger")
-}
+    debugger = join(sublime.packages_path(), "Debugger")
 
-for f, path in patches:
-    copyfile(join(patches, f), join(debugger, path, f))  # Replaces the destination file by default
+    # The list of patches as filename: path from Debugger root
+    patches = {
+        "variables.py": join("modules", "debugger")
+    }
 
-print("Done.\n\nPlease restart Sublime Text if it is currently open.")
+    for f, path in patches.items():
+        src = join(patch_dir, f)
+        dst = join(debugger, path, f)
+        copyfile(src, dst)  # Replaces the destination file by default
+
+    msg = "Finished installing patches. Please restart Sublime for them to take effect."
+    print(msg)
+    sublime.message_dialog(msg)
+
