@@ -30,7 +30,7 @@ def plugin_loaded():
         dst = join(debugger, path, f)
         copyfile(src, dst)  # Replaces the destination file by default
 
-    msg = "Finished installing patches. Please restart Sublime for them to take effect."
+    msg = "Successfully installed patches."
     print(msg)
     sublime.message_dialog(msg)
 
