@@ -10,4 +10,4 @@ The contents of those files were minimally modified to fit our needs.
 - Open Sublime
 - In the menu, select Preferences -> Browse Packages
 - Clone this repository to the root of the opened folder
-- Close Sublime and restart
+- Close Sublime and restart. You should get a message saying the patches were installed successfully
