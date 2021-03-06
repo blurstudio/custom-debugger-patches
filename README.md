@@ -14,5 +14,5 @@ The contents of those files were minimally modified to fit our needs.
 
 ### Updates
 
-- Go to the location you cloned this repository and pull.
+- Go to the location you cloned this repository and pull
 - Sublime should automatically detect the change and a confirmation message box will pop up
